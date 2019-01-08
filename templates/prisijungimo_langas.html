@@ -1,0 +1,106 @@
+<?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+if(!isset($_SESSION['logged'])){ ?>
+<!DOCTYPE HTML>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Generic - Intensify by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="index.php?" class="logo">intensify</a>
+				<nav class="right">
+					<a href="index.php?module=registruotis" class="button alt">Registruotis</a>
+				</nav>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Namai</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="#" class="button fit">Login</a></li>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner" style="justify-content: center">
+				<h2>Prisijunkite</h2>
+				<?php if(isset($register) && $register == 'ok'){
+					echo "<label style='color:green'>Sėkmingai užsiregistravote! Galite prisijungti!</label>";}
+				?>
+					<form method="post" action="index.php?module=prisijungti">
+					<?php
+                        if(!empty($errors[0])){
+                            echo $errors[0] . "<br><br>";
+                        }
+                    ?> 
+                    <?php
+                        if(!empty($errors[1])){
+                            echo $errors[1] . "<br><br>";
+                        }
+                    ?> 
+						<div class="6u 12u$(xsmall)">
+							<input type="text" name="nickname" required="required" id="name" value="" placeholder="Slapyvardis" />
+						</div><br>
+						<div class="6u 12u$(xsmall)">
+							<input type="password" name="password" required="required" id="name" value="" placeholder="Slaptažodis" />
+						</div><br>
+						<div class="row uniform">
+							<ul class="actions">
+								<li><input type="submit" name="login" value="Prisijungti" /></li>
+							</ul>
+						</div>
+					</form>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Susisiekite su mumis</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">+3706222222</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">deividas.mazukna@ktu.edu</a></li>
+						<li><span class="icon fa-map-marker"></span>Kaunas, 2017</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+					<br><a>Only for educational purposes</a>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+<?php } 
+else {
+	include 'templates/pagrindinis_meniu.html';
+}
+
+?>

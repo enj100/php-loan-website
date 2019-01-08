@@ -1,0 +1,140 @@
+<?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+if(isset($_SESSION['logged'])){ ?>
+
+<!DOCTYPE HTML>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Generic - Intensify by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="index.php?" class="logo">intensify</a>
+				<?php if(isset($_SESSION['logged'])){ ?>
+				<nav class="right">
+					<a href="index.php?module=atsijungti" class="button alt">Atsijungti</a>
+				</nav>
+				<?php } ?>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<?php if(isset($_SESSION['logged'])){ ?>
+					<li><a>Prisijungęs vartotojas: <?php echo $_SESSION['username']; ?></a><li>
+					<?php } ?>
+					<li><a href="index.php?">Namai</a></li>
+					<?php if(isset($_SESSION['logged'])){ ?>
+					<?php if($_SESSION['ulevel'] != 4) {?>
+					<li><a href="index.php?module=indelis&action=mano">Mano indėliai</a></li>
+					<li><a href="index.php?module=indelis">Padėti indėlį</a></li>
+					<li><a href="index.php?module=paskola">Imti paskolą</a></li>
+					<li><a href="index.php?module=mokejimo_grafikas">Peržiūrėti mokėjimo grafiką</a></li>
+					<?php } ?>
+					<?php if($_SESSION['ulevel'] == 4) { ?>
+					<li><a href="index.php?module=fondas">Peržiūrėti fondą</a></li>
+					<li><a href="elements.html">Formuoti ataskaitas</a></li>
+					<li><a href="index.php?module=keisti_palukanas">Keisti palūkanas</a></li>
+					<?php } ?>
+					<br><br>
+					<li><a href="index.php?module=nustatymai">Paskyros nustatymai</a></li>
+					<?php } ?>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner" style="justify-content: center">
+					<h3>Paskolos grąžinimo grafikas</h3> 
+						<div class="table-wrapper">
+						<?php if($_SESSION['ulevel'] == 3){ ?>
+						<?php if($success == 1){ echo "Grąžinote visą paskolą!";} ?>
+						<?php if(!empty($result)) { ?>
+							<a href='index.php?module=mokejimo_grafikas&action=payAll'>Mokėti viską</a>
+						<?php } ?>
+							<table>
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Suma</th>
+										<th>Data</th>
+										<th>Grąžinti</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php if(!empty($result)){
+									$counter = 1;
+									foreach($result as $res){
+										echo "<tr>"; 
+											echo "<td>" . $counter . "</td>";
+											echo "<td>" . $res['suma'] . " &#8364" ."</td>";
+											echo "<td>" . $res['data'] . "</td>";
+											if($counter <= 1){
+											echo "<td>" . "<a href='index.php?module=mokejimo_grafikas&action=pay&id=" . $res['id'] . "'>Taip</a>" . "</td>";
+											} else{
+											echo "<td>" . "-" . "</td>";
+											}
+										echo "<tr>";
+										$counter++;
+									}
+								} 
+								?>
+								</tbody>
+
+							</table>
+							<?php } else{?>
+							<br>
+								<h4>Jūs neturite paskolos!</h4> <br><br><br><br><br><br><br>
+							<?php } ?>
+						</div>
+				</div>
+			</section>
+			<br><br><br><br><br><br><br>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Susisiekite su mumis</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">+3706222222</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">deividas.mazukna@ktu.edu</a></li>
+						<li><span class="icon fa-map-marker"></span>Kaunas, 2017</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+					<br><a>Only for educational purposes</a>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+<?php } 
+else {
+var_dump($_SESSION['logged']);die();
+	include 'templates/pagrindinis_meniu.html';
+}
+
+?>

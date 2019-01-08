@@ -1,0 +1,134 @@
+<?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+if(!isset($_SESSION['logged'])){ ?>
+<!DOCTYPE HTML>
+<!--
+	Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Generic - Intensify by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="index.php?" class="logo">intensify</a>
+				<nav class="right">
+					<a href="index.php?module=prisijungti" class="button alt">Prisijungti</a>
+				</nav>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.php?">Namai</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="index.php?module=prisijungti" class="button fit">Prisijungti</a></li>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner" style="justify-content: center">
+				<h2>Užsiregistruokite</h2>
+					<form method="post" action="index.php?module=registruotis">
+					<?php
+                        if(!empty($errors[0])){
+                            echo $errors[0] . "<br><br>";
+                        }
+                    ?> 
+					<div class="row uniform">
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų slapyvardis:</label>
+							<input type="text" name="nickname" id="surename" required="required" value=""  pattern=".{4,}" title="Slapyvardis turi būti bent iš 4 simbolių!" placeholder="Slapyvardis" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Įveskite saptažodį:</label>
+							<input type="password" name="password" required="required" id="name" value="" pattern=".{4,}" title="Slaptažodis turi būti bent iš 4 simbolių!" placeholder="Slaptažodis" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų vardas:</label>
+							<input type="text" name="name" id="name" required="required" pattern=".{3,}" title="Vardas turi būti bent iš 3 simbolių!" value="" placeholder="Vardas" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų pavardė:</label>
+							<input type="text" name="surename" id="name" required="required" pattern=".{3,}" title="Pavardė turi būti bent iš 3 simbolių!" value="" placeholder="Pavardė" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų gimimo data:</label>
+							<input type="date" class="8u 12u$(xsmall)" required="required" name="date" id="name" value="" placeholder="Gimimo data" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų lytis:</label>
+							<select name="gender" required="required">
+								<option value="vyras">Vyras</option>
+								<option value="moteris">Moteris</option>
+							</select>
+						</div>
+						<div class="6u 12u$(xsmall)" >
+							<label>Jūsų gyvenamosios vietos adresas:</label>
+							<input type="text" name="address" id="name" required="required" value="" placeholder="Adresas" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų telefono numeris: +</label>
+							<input type="text" name="number" id="name" required="required" pattern = "[0-9]+" value="" placeholder="Telefonas" />
+						</div>
+						<div class="6u 12u$(xsmall)">
+							<label>Jūsų el. paštas:</label>
+							<input type="email" name="email" id="email" required="required" value="" placeholder="El. paštas" />
+						</div>
+						<div class="12u$">
+							<ul class="actions">
+								<li><input type="submit" name="register" value="Registruotis" /></li>
+							</ul>
+						</div>
+					</div>
+					</form>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Susisiekite su mumis</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">+3706222222</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">deividas.mazukna@ktu.edu</a></li>
+						<li><span class="icon fa-map-marker"></span>Kaunas, 2017</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+					<br><a>Only for educational purposes</a>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+
+<?php } 
+else {
+	include 'templates/pagrindinis_meniu.html';
+}
+
+?>
